@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
+</head>
+<body class="sans-serif near-black">
+  <div class="mw8 center">
+    <div id="timer" class="mw7 center pa4 tc f3 br4 mv4 bg-dark-blue near-white mb4">
+      <form>
+        <div class="mv2">
+          <label for="client" class="db mb2">Client</label>
+          <select id="client" class="bg-near-white">
+            <option>Client 1</option>
+            <option>Client 2</option>
+            <option>Client 3</option>
+          </select>
+        </div>
+        <div class="mv3">
+          <button class="f3 link dim br3 ph3 pv2 mb2 dib near-black bg-yellow bw0">Start</button>          
+        </div>
+      </form>
+    </div>
+
+    <div id="timer2" class="mw7 center pa4 tc f3 br4 mv4 bg-dark-blue near-white mb4">
+      <form>
+        <div class="mt2 f-headline courier">
+          01:23<span class="f4 light-gray">45</span>
+        </div>
+        <div class="mb2 f3">Client 2</div>        
+        <div class="mv3">
+          <button class="f3 link dim br3 ph3 pv2 mb2 dib near-white bg-red bw0">Stop</button>          
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
