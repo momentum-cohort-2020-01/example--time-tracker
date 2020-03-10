@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from django.views.decorators.http import require_POST
+from django.views.decorators.http import require_GET, require_POST
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
 import json
 from django.utils import timezone
 
 
+@login_required
 def homepage(request):
     clients = request.user.clients.all()
     return render(request, "tracker/homepage.html", {
@@ -13,6 +15,25 @@ def homepage(request):
     })
 
 
+@login_required
+@require_GET
+def check_timer(request):
+    open_interval = request.user.intervals.filter(
+        finished_at__isnull=True).first()
+    if open_interval is None:
+        return JsonResponse({"status": "ok", "data": None})
+    else:
+        return JsonResponse({
+            "status": "ok",
+            "data": {
+                "pk": open_interval.pk,
+                "client_name": open_interval.client.name,
+                "started_at": open_interval.started_at
+            },
+        })
+
+
+@login_required
 @csrf_exempt
 @require_POST
 def start_timer(request):
@@ -55,5 +76,34 @@ def start_timer(request):
 
     return JsonResponse({
         "status": "ok",
-        "started_at": work_interval.started_at
+        "data": {
+            "pk": work_interval.pk,
+            "client_name": work_interval.client.name,
+            "started_at": work_interval.started_at
+        },
+    })
+
+
+@login_required
+@csrf_exempt
+@require_POST
+def stop_timer(request):
+    open_interval = request.user.intervals.filter(
+        finished_at__isnull=True).first()
+    if open_interval is None:
+        return JsonResponse({
+            "status": "error",
+            "message": "no open work interval"
+        })
+
+    open_interval.finished_at = timezone.now()
+    open_interval.save()
+    return JsonResponse({
+        "status": "ok",
+        "data": {
+            "pk": open_interval.pk,
+            "client_name": open_interval.client.name,
+            "started_at": open_interval.started_at,
+            "finished_at": open_interval.finished_at,
+        }
     })

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Time Tracker{% endblock %}</title>
+  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
+  {% block meta %}{% endblock %}
+</head>
+<body class="sans-serif near-black">
+  <div class="mw8 center">
+    {% block content %}
+    {% endblock %}
+  </div>
+</body>
+</html>
