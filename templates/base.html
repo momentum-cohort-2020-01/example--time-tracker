@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}Time Tracker{% endblock %}</title>
   <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
+  <link rel="stylesheet" href="{% static 'selectize/css/selectize.default.css' %}">
+  <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+  <script src="{% static 'selectize/js/standalone/selectize.min.js' %}"></script>
   {% block meta %}{% endblock %}
 </head>
 <body class="sans-serif near-black">

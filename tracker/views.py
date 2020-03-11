@@ -107,3 +107,18 @@ def stop_timer(request):
             "finished_at": open_interval.finished_at,
         }
     })
+
+
+@login_required
+@csrf_exempt
+@require_POST
+def create_client(request):
+    data = json.loads(request.body.decode("utf-8"))
+    client = request.user.clients.create(name=data['name'])
+    return JsonResponse({
+        "status": "ok",
+        "data": {
+            "id": client.pk,
+            "name": client.name
+        }
+    })
