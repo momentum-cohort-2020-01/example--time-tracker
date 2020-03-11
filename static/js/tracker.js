@@ -52,7 +52,7 @@ function setUpTimerForm () {
 
     fetch('/timer/start/', {
       method: 'POST',
-      body: JSON.stringify({ clientId: q('#client').value })
+      body: JSON.stringify({ clientId: q('#client').value, note: q('#note').value })
     })
       .then(res => res.json())
       .then(json => {

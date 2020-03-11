@@ -44,6 +44,8 @@ def start_timer(request):
     # if not, give the user a warning
 
     client_pk = data.get('clientId')
+    note = data.get('note')
+
     if client_pk is None:
         return JsonResponse(
             {
@@ -72,6 +74,7 @@ def start_timer(request):
 
     # create a new WorkInterval for the current user and the client
     work_interval = request.user.intervals.create(client=client,
+                                                  note=note,
                                                   started_at=timezone.now())
 
     return JsonResponse({
@@ -79,6 +82,7 @@ def start_timer(request):
         "data": {
             "pk": work_interval.pk,
             "client_name": work_interval.client.name,
+            "note": work_interval.note,
             "started_at": work_interval.started_at
         },
     })
