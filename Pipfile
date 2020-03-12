@@ -18,6 +18,7 @@ django-environ = "*"
 django-registration-redux = "*"
 psycopg2 = "*"
 django-heroku = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.7"
