@@ -23,6 +23,7 @@ urlpatterns = [
     path('timer/', tracker_views.check_timer, name="check_timer"),
     path('timer/start/', tracker_views.start_timer, name="start_timer"),
     path('timer/stop/', tracker_views.stop_timer, name="stop_timer"),
+    path('clients/', tracker_views.create_client, name="create_client"),
     path('admin/', admin.site.urls),
     path('accounts/', include('registration.backends.simple.urls')),
 ]

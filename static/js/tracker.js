@@ -1,4 +1,4 @@
-/* globals fetch */
+/* globals fetch, $ */
 
 let currentTimerId
 
@@ -26,6 +26,18 @@ function main () {
   checkForRunningTimer()
   setUpTimerForm()
   setUpStopButton()
+  $('#client').selectize({
+    create: function (input, done) {
+      fetch('/clients/', {
+        method: 'POST',
+        body: JSON.stringify({ name: input })
+      })
+        .then(res => res.json())
+        .then(json => {
+          done({ value: json.data.id, text: json.data.name })
+        })
+    }
+  })
 }
 
 function checkForRunningTimer () {

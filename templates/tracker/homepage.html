@@ -10,7 +10,7 @@
     <form id="timer-form">
       <div class="mv2">
         <label for="client" class="db mb2">Client</label>
-        <select id="client" class="bg-near-white">
+        <select id="client">
           {% for client in clients %}
             <option value="{{ client.pk }}">{{ client.name }}</option>            
           {% endfor %}
