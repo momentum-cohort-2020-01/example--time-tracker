@@ -144,3 +144,7 @@ INTERNAL_IPS = [
 # Registration options
 
 REGISTRATION_AUTO_LOGIN = True
+
+# Configure Django App for Heroku.
+import django_heroku
+django_heroku.settings(locals())
